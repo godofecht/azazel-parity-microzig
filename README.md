@@ -30,7 +30,15 @@ Both print `microzig flags: name=zaza verbose=false`.
 
 ## Comparison
 
-| Build | What it does | Config size |
-|-------|--------------|-------------|
-| azazel | imports the flags module + a consumer, as CUE data on the 0.17 lane | `project.cue`, 14 lines |
-| zaza | imports the flags module via the standard Zig build graph | `build.zig`,       13 lines |
+Clean-cache builds with dependencies pre-fetched, Apple Silicon, fastest of two runs.
+
+
+| Build | Clean build | Config |
+|-------|-------------|--------|
+| azazel | 3.4 s | `project.cue` — 14 lines · 429 B |
+| zaza | 3.1 s | `build.zig` — 13 lines · 825 B |
+
+The upstream's full build is not reproduced here (see the note below), so no native time is listed.
+
+**Another tiny std-only consumer where zaza's dozen lines are smaller than the CUE; microzig's full embedded build is not reproduced here.**
+
